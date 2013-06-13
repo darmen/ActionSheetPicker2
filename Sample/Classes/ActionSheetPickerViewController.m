@@ -121,8 +121,7 @@
     } origin:sender];
     
     [self.actionSheetPicker addCustomButtonWithTitle:@"Today" value:[NSDate date]];
-    [self.actionSheetPicker addCustomButtonWithTitle:@"Yesterday" value:[[NSDate date] TC_dateByAddingCalendarUnits:NSDayCalendarUnit amount:-1]];
-    self.actionSheetPicker.hideCancel = YES;
+    self.actionSheetPicker.hideCancel = NO;
     [self.actionSheetPicker showActionSheetPicker];
 }
 

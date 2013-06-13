@@ -105,6 +105,15 @@
     NSAssert(NO, @"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), (char *)action);
 }
 
+- (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin {
+    if (self.onActionSheetCancel) {
+        _onActionSheetCancel(self);
+        return;
+    }
+    else if (target && cancelAction && [target respondsToSelector:cancelAction])
+        [target performSelector:cancelAction withObject:origin];
+}
+
 - (void)eventForDatePicker:(id)sender {
     if (!sender || ![sender isKindOfClass:[UIDatePicker class]])
         return;
